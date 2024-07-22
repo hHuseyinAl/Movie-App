@@ -1,0 +1,35 @@
+.person_image{
+    width: 180px;
+    height: 220px;
+    border-radius: 10px;
+}
+
+.cast_names{
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+.cast_names span:last-child{
+    color: #ffffff5f;
+}
+
+@media (max-width: 600px){
+    .cast_image{
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .person_image{
+        width: 140px;
+        height: 170px;
+    }
+
+    .cast_names{
+        font-size: 16px;
+    }
+}

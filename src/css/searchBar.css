@@ -1,0 +1,30 @@
+.search_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #03a9f4, #f441a5);
+}
+
+.input {
+    border: none;
+    outline: none;
+    width: 200px;
+    font-size: medium;
+    background: transparent;
+    color: #fff;
+}
+
+.input::placeholder{
+    color: #fff;
+}
+
+@media (max-width: 600px){
+    .search_bar{
+        height: 32px;
+        padding-right: 50px;
+    }
+    
+    .input{
+        width: 140px;
+    }
+}

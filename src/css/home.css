@@ -1,0 +1,123 @@
+.posterImage {
+    height: 650px;
+    width: 100%;
+}
+
+.posterImage>img {
+    height: 650px;
+    object-fit: cover;
+}
+
+.posterImage_overlay {
+    position: absolute;
+    padding: 100px;
+    left: 0;
+    bottom: 0;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
+    opacity: 0.8;
+    transition: opacity 0.4s;
+}
+
+.posterImage_overlay:hover {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.posterImage_title {
+    font-weight: 900;
+    font-size: 64px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.posterImage_runtime {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.posterImage_rating {
+    margin-left: 50px;
+}
+
+.posterImage_description {
+    font-style: italic;
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    text-align: left;
+    width: 70%;
+}
+
+@media (max-width: 1200px) {
+    .poster .carousel {
+        width: 80%;
+        margin-left: 100px;
+        height: 400px;
+    }
+
+    .posterImage {
+        height: 400px;
+    }
+
+    .posterImage>img {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .posterImage_overlay {
+        position: absolute;
+        padding: 140px 50px 50px 50px;
+        left: 0;
+        bottom: 0;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
+    }
+
+    .posterImage_title {
+        font-weight: 900;
+        font-size: 26px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .posterImage_runtime {
+        font-size: 18px;
+    }
+
+    .posterImage_rating {
+        margin-left: 50px;
+    }
+
+    .posterImage_description {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .poster .carousel {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .posterImage_title {
+        font-weight: 900;
+        font-size: 20px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .posterImage_runtime {
+        font-size: 14px;
+    }
+}

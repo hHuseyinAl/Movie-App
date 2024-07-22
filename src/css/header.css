@@ -1,0 +1,162 @@
+.active {
+    border-radius: 15px;
+    background-color: #f441a5;
+}
+
+.header-main {
+    background-color: linear-gradient(45deg, #504a63, #30197d);
+
+    padding: 10px 10px;
+}
+
+.home_image {
+    width: 250px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: x-large;
+
+}
+
+.header span {
+    padding: 5px;
+    color: #fff;
+}
+
+.header span:hover {
+    color: #fff;
+}
+
+.header .center {
+    display: flex;
+    gap: 50px;
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(90deg, #03a9f4, #f441a5);
+    font-size: 30px;
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.logo {
+    padding-bottom: 2px;
+}
+
+.center span::after {
+    content: "";
+    width: 0;
+    height: 1.6px;
+    background: #f441a5;
+    display: block;
+    margin: auto;
+    transition: all 0.5s;
+    margin-top: 3px;
+}
+
+.center span:hover::after {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.center a {
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    font-size: 45px;
+    display: none;
+    position: absolute;
+    right: 5px;
+}
+
+@media (max-width: 1150px) {
+    .header .center {
+        font-size: 20px;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 960px) {
+    .menu {
+        display: flex;
+        cursor: pointer;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .header .center {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .header .open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .open span::after {
+        content: "";
+        width: 0;
+        height: 1.6px;
+        background: #f441a5;
+        display: block;
+        margin: auto;
+        transition: all 0.5s;
+        margin-top: 3px;
+    }
+
+    .open span:hover::after {
+        width: 100%;
+        transition: all 0.5s;
+    }
+
+    .open a {
+        margin-top: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header .right {
+        position: absolute;
+        right: 52px;
+        width: 250px;
+    }
+}
+
+@media (max-width: 600px) {
+    .home {
+        font-size: 20px;
+    }
+
+    .header .right {
+        width: 200px;
+    }
+
+    .menu {
+        font-size: 32px;
+    }
+
+    .open {
+        font-size: 22px;
+    }
+}

@@ -1,0 +1,71 @@
+.cards {
+    display: inline-block;
+    transition: transform 0.3s;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 8px;
+    cursor: pointer;
+    min-width: 200px;
+    height: 300px;
+    z-index: 1;
+    border: 1px solid rgb(99, 99, 99);
+}
+
+.cards:hover {
+    transform: scale(1.2);
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.cards_img {
+    height: 300px;
+    width: 200px;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.cards:hover .cards_img{
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.cards_overlay {
+    position: absolute;
+    padding: 0 15px 15px 15px;
+    bottom: 0px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-image: linear-gradient(rgb(0, 0, 0, 1), rgb(0, 0, 0, 0), rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cards_overlay:hover {
+    opacity: 1;
+}
+
+.card_title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card_runtime {
+    width: 85%;
+    position: absolute;
+    top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.card_description {
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
