@@ -1,6 +1,6 @@
 .movie_list {
     padding: 0 50px 50px 50px;
-    min-height: calc(100dvh - 106px);
+    min-height: calc(100dvh - 152px);
 }
 
 .list_title {
@@ -58,5 +58,11 @@
 @media (max-width: 900px) {
     .movie_list .list_title {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .movie_list {
+        min-height: calc(100dvh - 140px);
     }
 }

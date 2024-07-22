@@ -6,6 +6,12 @@ import image from '../assets/image5.png'
 import Cast from '../components/Cast'
 import '../css/moviePhotos.css'
 import SimilarMovies from '../components/SimilarMovies'
+import { UserAuth } from '../context/AuthContext'
+import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { db } from '../../firebase'
+import { toast } from 'react-toastify'
+import Notification from '../components/Notifications'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 
 function Movie() {
@@ -61,9 +67,56 @@ function Movie() {
         fetch(`${baseUrl}/${id}/similar?api_key=${apiKey}`).then(res => res.json()).then(data => setSimilarMovies(data.results))
     }
 
+    const { user } = UserAuth()
+    const [like, setLike] = useState(false)
+
+    useEffect(() => {
+        const fetchUserFavourites = async () => {
+            if (user) {
+                const docRef = doc(db, "users", `${user.email}`)
+                const docSnap = await getDoc(docRef)
+                if (docSnap.exists()) {
+                    const userData = docSnap.data()
+                    const favMovies = userData.favMovies;
+                    favMovies.map((favMovie) => {
+                        if (id == favMovie.id) {
+                            return setLike(true)
+                        } else if (!id == favMovie.id) {
+                            setLike(false)
+                        }
+                    })
+                }
+            }
+        }
+        fetchUserFavourites()
+    }, [id, user])
+
+    const markOrUnmarkFavMovie = async () => {
+        const userEmail = `${user?.email}`;
+        const userDoc = doc(db, 'users', userEmail)
+
+        if (!user) {
+            toast.error("Please login to mark as favorite.")
+            return;
+        }
+        if (!like) {
+            await updateDoc(userDoc, {
+                favMovies: arrayUnion({ ...currentMovieDetail })
+            })
+            setLike(true)
+        } else {
+            await updateDoc(userDoc, {
+                favMovies: arrayRemove(currentMovieDetail)
+            })
+            setLike(false)
+        }
+    }
+
     return (
         <div>
+            <Notification />
             <div className='movie'>
+                <p onClick={markOrUnmarkFavMovie} className='heart'>{like ? <FaHeart /> : <FaRegHeart />}</p>
                 <div className='movie_intro'>
                     <img className='movie_backdrop' src={currentMovieDetail && currentMovieDetail.backdrop_path ? `${url2}${currentMovieDetail.backdrop_path}` : image} />
                 </div>

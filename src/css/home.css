@@ -1,10 +1,10 @@
 .posterImage {
-    height: 650px;
+    height: 630px;
     width: 100%;
 }
 
 .posterImage>img {
-    height: 650px;
+    height: 630px;
     object-fit: cover;
 }
 

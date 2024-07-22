@@ -1,6 +1,6 @@
 .error{
     width: 100%;
-    min-height: calc(100dvh - 66px);
+    min-height: calc(100dvh - 112px);
     display: flex;
     justify-content: center;
     align-items: center;

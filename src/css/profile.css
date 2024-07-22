@@ -1,0 +1,45 @@
+.fav_list {
+    padding: 0 50px 50px 50px;
+    min-height: calc(100dvh - 152px);
+}
+
+.mail {
+    padding: 0 0 20px 50px;
+    opacity: 0.5;
+}
+
+.fav_list_title {
+    font-size: 30px;
+    margin: 40px;
+    display: flex;
+    justify-content: start;
+}
+
+.fav_list_cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 30px;
+}
+
+@media (max-width:600px) {
+    .fav_list {
+        min-height: calc(100dvh - 140px);
+    }
+
+    .fav_list_title {
+        justify-content: center;
+        font-size: 25px;
+    }
+
+    .fav_list_cards {
+        justify-content: center;
+    }
+
+    .mail {
+        padding: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

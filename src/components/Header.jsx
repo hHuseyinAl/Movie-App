@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import '../css/header.css'
 import SearchBar from './SearchBar'
 import { BiCameraMovie } from "react-icons/bi";
 import { LuMenu } from "react-icons/lu";
+import { UserAuth } from '../context/AuthContext';
+import Button from '@mui/material/Button';
 
 function Header() {
 
@@ -26,10 +28,48 @@ function Header() {
         }
     }, [menuOpen])
 
+    const { user, logOut } = UserAuth()
+    const navigate = useNavigate()
+
+    const handleLogout = async () => {
+        try {
+            await logOut()
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div>
             <div className='header-main'>
+                <div className='header_top'>
+                    {user?.email ? (
+                        <>
+                            <div className='header_info'>You Can Add/Remove A Movie In Your Profile Or Loguot</div>
+                            <div className='user'>
+                                <Link to='/profile'>
+                                    <Button className='btn' variant="outlined" color='error' sx={{ color: "#fff" }}>Profile</Button>
+                                </Link>
+                                <Button onClick={handleLogout} variant="contained" color='error'>Logout</Button>
+                            </div>
+                        </>
+                    ) :
+                        (
+                            <>
+                                <div className='header_info'>Use Your Own Account To Benefit From Different Features</div>
+                                <div className='user'>
+                                    <Link to='/login'>
+                                        <Button className='btn' variant="outlined" color='error' sx={{ color: "#fff", borderColor: "#fff" }}>Login</Button>
+                                    </Link>
+                                    <Link to='/signup'>
+                                        <Button variant="contained" color='error'>SignUp</Button>
+                                    </Link>
+                                </div>
+                            </>
+                        )
+                    }
+                </div>
                 <div className='header'>
                     <div className='left'>
                         <NavLink to="/" style={{ textDecoration: "none" }}><div className='home'>MovieWeb<BiCameraMovie className='logo' /></div></NavLink>

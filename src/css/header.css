@@ -3,9 +3,32 @@
     background-color: #f441a5;
 }
 
+.header_top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.header_info {
+    display: flex;
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+.user {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.user .btn:hover {
+    color: red;
+}
+
 .header-main {
     background-color: linear-gradient(45deg, #504a63, #30197d);
-
     padding: 10px 10px;
 }
 
@@ -88,6 +111,10 @@
 }
 
 @media (max-width: 960px) {
+    .header_info {
+        font-size: 17px;
+    }
+
     .menu {
         display: flex;
         cursor: pointer;
@@ -111,6 +138,13 @@
         flex-direction: column;
         width: 100%;
         padding-top: 20px;
+        animation: slide 0.5s ease-out;
+    }
+
+    @keyframes slide {
+        from {
+            transform: translateY(-100px);
+        }
     }
 
     .open span::after {
@@ -143,7 +177,17 @@
     }
 }
 
+@media (max-width:700px) {
+    .header_info {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 600px) {
+    .header_info {
+        font-size: 12px;
+    }
+
     .home {
         font-size: 20px;
     }

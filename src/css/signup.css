@@ -1,0 +1,125 @@
+.signup {
+    height: calc(100dvh - 112px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup_border {
+    position: relative;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    border: 3px solid #03a9f4;
+    border-radius: 10px;
+}
+
+.signup_border h1 {
+    position: absolute;
+    top: 40px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 350px;
+    margin-top: 10px;
+}
+
+.form .input-span {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form input[type="email"],
+.form input[type="password"] {
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #9c9c9c60;
+    outline: 2px solid #707070;
+}
+
+.form input[type="email"]:focus,
+.form input[type="password"]:focus {
+    outline: 2px solid #03a9f4;
+}
+
+.label {
+    align-self: flex-start;
+    color: #fff;
+    font-weight: 600;
+}
+
+.form .submit {
+    padding: 1rem 0.75rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 3rem;
+    background-color: #707070;
+    color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 300ms;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+.form .submit:hover {
+    background-color: #03a9f4;
+    color: #fff;
+}
+
+.span {
+    text-decoration: none;
+    color: #707070;
+}
+
+.span a {
+    color: #fff;
+}
+
+.form .email_label span {
+    color: #707070;
+    padding-left: 149px;
+}
+
+.input-span .password_label span {
+    color: #707070;
+    padding-left: 184px;
+}
+
+@media (max-width:600px) {
+    .signup {
+        height: calc(100dvh - 100px);
+    }
+
+    .signup_border {
+        width: 400px;
+        height: 450px;
+    }
+
+    .signup_border h1 {
+        top: 25px;
+    }
+
+    .form{
+        margin-top: 20px;
+    }
+}
