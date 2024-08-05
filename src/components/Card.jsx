@@ -3,7 +3,7 @@ import '../css/card.css'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Link } from 'react-router-dom'
-import { url2 } from '../pages/Home'
+import { clip, url2 } from '../pages/Home'
 import cardImage from '../assets/image4.jpg'
 
 function Card({ movie }) {
@@ -11,9 +11,12 @@ function Card({ movie }) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             setIsLoading(false)
         }, 1000);
+        return () => {
+            clearTimeout(timer)
+        }
     }, [])
 
     return (
@@ -36,7 +39,7 @@ function Card({ movie }) {
                                 <span className='card_rating'>{movie ? (movie.vote_average).toFixed(1) : ""} <i className='fa fa-star' /> {" "}</span>
                             </div>
                             <div className='card_description'>
-                                {movie ? movie.overview.slice(0, 100) + "..." : ""}
+                                {movie && clip((movie.overview), 100)}
                             </div>
                         </div>
                     </div>

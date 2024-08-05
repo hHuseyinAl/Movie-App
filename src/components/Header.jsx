@@ -6,6 +6,8 @@ import { BiCameraMovie } from "react-icons/bi";
 import { LuMenu } from "react-icons/lu";
 import { UserAuth } from '../context/AuthContext';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import { toast } from 'react-toastify';
 
 function Header() {
 
@@ -35,6 +37,11 @@ function Header() {
         try {
             await logOut()
             navigate("/")
+            if (location.pathname === "/") {
+                setTimeout(() => {
+                    toast.success("Successfully Logged Out")
+                }, 100);
+            }
         } catch (error) {
             console.log(error)
         }
@@ -48,8 +55,8 @@ function Header() {
                         <>
                             <div className='header_info'>You Can Add/Remove A Movie In Your Profile Or Loguot</div>
                             <div className='user'>
-                                <Link to='/profile'>
-                                    <Button className='btn' variant="outlined" color='error' sx={{ color: "#fff" }}>Profile</Button>
+                                <Link style={{ textDecoration: "none" }} to='/profile'>
+                                    <Avatar sx={{ bgcolor: "#504a63", width: 36, height: 36, ":hover": { bgcolor: "#504a639e" } }} variant='rounded'>{(user?.email).substring(0, 2)}</Avatar>
                                 </Link>
                                 <Button onClick={handleLogout} variant="contained" color='error'>Logout</Button>
                             </div>

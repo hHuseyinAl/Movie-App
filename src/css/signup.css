@@ -39,8 +39,8 @@
     gap: 0.5rem;
 }
 
-.form input[type="email"],
-.form input[type="password"] {
+.form input,
+.form input {
     border-radius: 0.5rem;
     padding: 1rem 0.75rem;
     width: 100%;
@@ -52,8 +52,8 @@
     outline: 2px solid #707070;
 }
 
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
+.form input:focus,
+.form input:focus {
     outline: 2px solid #03a9f4;
 }
 
@@ -79,6 +79,10 @@
     font-weight: 600;
     font-size: 0.9rem;
     margin-top: 20px;
+}
+
+.form .submit:disabled{
+    cursor: not-allowed;
 }
 
 .form .submit:hover {

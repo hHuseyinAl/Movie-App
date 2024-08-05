@@ -17,10 +17,15 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
-        
+
         try {
             await logIn(email, password)
             navigate("/")
+            if (location.pathname === "/") {
+                setTimeout(() => {
+                    toast.success("Successfully Logged In")
+                }, 100);
+            }
         } catch (error) {
             console.log(error)
             toast.error("Invalid Email Or Password")

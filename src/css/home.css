@@ -1,10 +1,10 @@
 .posterImage {
-    height: 630px;
+    height: 665px;
     width: 100%;
 }
 
-.posterImage>img {
-    height: 630px;
+.posterImage img {
+    height: 665px;
     object-fit: cover;
 }
 
@@ -30,7 +30,7 @@
 
 .posterImage_title {
     font-weight: 900;
-    font-size: 64px;
+    font-size: 60px;
     margin-bottom: 5px;
     text-align: left;
 }
@@ -70,16 +70,7 @@
     }
 
     .posterImage_overlay {
-        position: absolute;
         padding: 140px 50px 50px 50px;
-        left: 0;
-        bottom: 0;
-        height: 70%;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: flex-start;
-        background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
     }
 
     .posterImage_title {

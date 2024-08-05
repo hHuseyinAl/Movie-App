@@ -13,13 +13,12 @@ import { toast } from 'react-toastify'
 import Notification from '../components/Notifications'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-
 function Movie() {
 
-    const [currentMovieDetail, setCurrentMovieDetail] = useState()
-    const [photos, setPhotos] = useState()
-    const [credits, setCredits] = useState()
-    const [similarMovies, setSimilarMovies] = useState()
+    const [currentMovieDetail, setCurrentMovieDetail] = useState({})
+    const [photos, setPhotos] = useState([])
+    const [credits, setCredits] = useState([])
+    const [similarMovies, setSimilarMovies] = useState([])
     const { id } = useParams()
 
     const addHorizontalScrollListener = (selector) => {
@@ -96,7 +95,7 @@ function Movie() {
         const userDoc = doc(db, 'users', userEmail)
 
         if (!user) {
-            toast.error("Please login to mark as favorite.")
+            toast.error("Please Login To Mark As Favorite")
             return;
         }
         if (!like) {
@@ -104,11 +103,13 @@ function Movie() {
                 favMovies: arrayUnion({ ...currentMovieDetail })
             })
             setLike(true)
+            toast.success("Added To Favorites")
         } else {
             await updateDoc(userDoc, {
                 favMovies: arrayRemove(currentMovieDetail)
             })
             setLike(false)
+            toast.success("Removed From Favorites")
         }
     }
 
@@ -135,7 +136,8 @@ function Movie() {
                                 {currentMovieDetail ? currentMovieDetail.tagline : ""}
                             </div>
                             <div className='movie_rating'>
-                                {currentMovieDetail ? (currentMovieDetail.vote_average).toFixed(1) : ""} <i className='fa fa-star' />
+                                {/* {currentMovieDetail ? (currentMovieDetail.vote_average).toFixed(1) : ""} <i className='fa fa-star' /> */}
+                                {currentMovieDetail && currentMovieDetail.vote_average ? (currentMovieDetail.vote_average).toFixed(1): ""} <i className='fa fa-star' />
                                 <span className='movie_voteCount'>{" "}{currentMovieDetail ? "(" + currentMovieDetail.vote_count + ") votes" : ""}</span>
                             </div>
                             <div className='movie_runtime'>
@@ -151,7 +153,7 @@ function Movie() {
                             </div>
                         </div>
                         <div className='movie_detailRightBottom'>
-                            <div className='synopsisText'>Synopsis</div>
+                            <h3 className='synopsisText'>Overview</h3>
                             <div className='movie_overview'>{currentMovieDetail ? currentMovieDetail.overview : ""}</div>
                         </div>
                     </div>
@@ -165,7 +167,7 @@ function Movie() {
                 </div>
                 {currentMovieDetail && currentMovieDetail.production_companies && currentMovieDetail.production_companies.length > 0 && (
                     <>
-                        <div className='movie_heading'>Production Companies</div>
+                        <h1 className='movie_heading'>Production Companies</h1>
                         <div className='movie_production'>
                             {currentMovieDetail.production_companies.map(company => (
                                 <div key={company.id}>

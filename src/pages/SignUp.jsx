@@ -4,32 +4,46 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext'
 import { toast } from 'react-toastify'
 import Notification from '../components/Notifications'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase'
 
 function SignUp() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
 
-    const { signUp, createDoc } = UserAuth()
+    const { createDoc } = UserAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        if (password.length < 6) {
-            toast.error("Password Length Must Be At Least 6 Digits")
-        } else {
-            try {
-                await signUp(email, password)
-                await createDoc(email)
+        setLoading(true)
+        
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(async () => {
                 navigate("/")
-            } catch (error) {
-                console.log(error)
-                toast.error("Invalid Email Or Password")
-                setEmail("")
-                setPassword("")
-            }
-        }
+                await createDoc(email)
+                if (location.pathname === "/") {
+                    setTimeout(() => {
+                        toast.success("Successfully Logged In")
+                    }, 100);
+                }
+                setLoading(false)
+            })
+            .catch((error) => {
+                if (error.code === 'auth/email-already-in-use') {
+                    toast.error('E-mail Already In Use')
+                } else if (error.code === 'auth/weak-password') {
+                    toast.error("Weak Password")
+                    setPassword("")
+                } else if (error.code === 'auth/invalid-email') {
+                    toast.error("Invalid Email")
+                    setEmail("")
+                    setPassword("")
+                }
+                setLoading(false)
+            })
     }
 
     return (
@@ -45,7 +59,7 @@ function SignUp() {
                         <label className='password_label' htmlFor='password'>Password <span>e.g. 123456</span></label>
                         <input required type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </span>
-                    <button className="submit" >Sign Up</button>
+                    <button className="submit" disabled={loading} >{loading ? "Loading" : "Sign Up"}</button>
                     <span className="span">Already subscribed to MovieWeb <Link to='/login'>Sign In</Link></span>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../css/movieList.css'
 import { useParams } from 'react-router-dom'
-import { apiKey, baseUrl, url } from '../pages/Home'
+import { apiKey, baseUrl } from '../pages/Home'
 import Card from './Card'
 
 function MovieList() {

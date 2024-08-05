@@ -28,12 +28,7 @@
 }
 
 .header-main {
-    background-color: linear-gradient(45deg, #504a63, #30197d);
-    padding: 10px 10px;
-}
-
-.home_image {
-    width: 250px;
+    padding: 10px;
 }
 
 .header {
@@ -46,10 +41,6 @@
 
 .header span {
     padding: 5px;
-    color: #fff;
-}
-
-.header span:hover {
     color: #fff;
 }
 

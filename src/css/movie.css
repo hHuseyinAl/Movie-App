@@ -91,12 +91,6 @@
     font-size: 25px;
     margin-bottom: 20px;
     font-weight: 600;
-    display: flex;
-    position: relative;
-    align-items: center;
-}
-.synopsisText > div:last-of-type {
-    margin-left: auto;
 }
 
 .movie_overview{
@@ -192,6 +186,7 @@
     margin:0 90px;
     padding: 30px 0;
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
     overflow: auto;
     gap: 20px;
@@ -259,7 +254,7 @@
     }
 
     .synopsisText{
-        font-size: large;
+        font-size: x-large;
     }
 
     .movie_overview{
@@ -299,7 +294,7 @@
     }
 
     .synopsisText{
-        font-size: medium;
+        font-size: large;
     }
 
     .movie_overview{
