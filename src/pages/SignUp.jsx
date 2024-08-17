@@ -49,7 +49,7 @@ function SignUp() {
     return (
         <div className='signup'>
             <div className='signup_border'>
-                <h1>Sing Up</h1>
+                <h1>Sign Up</h1>
                 <form className="form" onSubmit={handleSubmit}>
                     <span className="input-span">
                         <label className='email_label' htmlFor='email'>Email <span>e.g. user@user.com</span></label>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext'
 import { toast } from 'react-toastify'
 import Notification from '../components/Notifications'
+import { auth } from '../../firebase'
 
 function Login() {
 
@@ -11,7 +12,7 @@ function Login() {
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const { logIn } = UserAuth()
+    const { logIn, resetPassword } = UserAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -27,12 +28,25 @@ function Login() {
                 }, 100);
             }
         } catch (error) {
-            console.log(error)
-            toast.error("Invalid Email Or Password")
-            setEmail("")
-            setPassword("")
+                console.log(error)
+                toast.error("Invalid Email Or Password")
+                setEmail("")
+                setPassword("")
         } finally {
             setLoading(false)
+        }
+    }
+
+    const handleResetPassword = async ()=>{
+        try {
+            await resetPassword(auth, email)
+            toast.success("Password Reset Email Has Sent To Your Email Account Please Check Your Inbox")
+        } catch (error) {
+            if (error.code == 'auth/missing-email') {
+                toast.error("Please Fill The Email Section To Reset Your Password")
+            }else{
+                toast.error("An Unexpected Error Occurred")
+            }
         }
     }
 
@@ -46,7 +60,9 @@ function Login() {
                         <input required type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} /></span>
                     <span className="input-span">
                         <label htmlFor='password'>Password</label>
-                        <input required type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} /></span>
+                        <input required type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </span>
+                    <span onClick={handleResetPassword} className='fpassword'>Forgot Password?</span>
                     <button className="enter" disabled={loading} >{loading ? "Loading" : "Sign In"}</button>
                     <span className="span">New to MovieWeb? <Link to='/signup'>Sign Up</Link></span>
                 </form>
